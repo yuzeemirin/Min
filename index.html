@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>A Little Gift For You 💗</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    font-family: "Trebuchet MS", Arial, sans-serif;
+    background:
+        radial-gradient(circle at 50% 35%, #fff5fa 0%, #ffddea 45%, #ffc5dc 100%);
+    position: relative;
+    touch-action: none;
+}
+
+/* ---------------- BACKGROUND ---------------- */
+
+.background-glow {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,.7), transparent 25%),
+        radial-gradient(circle at 80% 80%, rgba(255,255,255,.5), transparent 30%);
+}
+
+/* ---------------- INSTRUCTION ---------------- */
+
+.instruction {
+    position: absolute;
+    top: 8%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    text-align: center;
+    color: #d64b7d;
+    z-index: 20;
+    transition: opacity .5s ease, transform .5s ease;
+}
+
+.instruction h1 {
+    font-size: clamp(24px, 7vw, 42px);
+    margin-bottom: 10px;
+    text-shadow: 0 3px 10px rgba(255,255,255,.8);
+}
+
+.instruction p {
+    font-size: clamp(15px, 4vw, 20px);
+    color: #9e476b;
+}
+
+.arrow {
+    font-size: 35px;
+    margin-top: 12px;
+    animation: arrowMove 1.2s infinite ease-in-out;
+}
+
+@keyframes arrowMove {
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(12px);
+    }
+}
+
+/* ---------------- GIFT AREA ---------------- */
+
+.gift-area {
+    position: absolute;
+    left: 50%;
+    top: 52%;
+    transform: translate(-50%, -50%);
+    width: min(280px, 70vw);
+    height: 330px;
+    z-index: 15;
+}
+
+/* ---------------- GIFT BOX ---------------- */
+
+.gift {
+    position: absolute;
+    width: 210px;
+    height: 190px;
+    left: 50%;
+    bottom: 15px;
+    transform: translateX(-50%);
+}
+
+/* BOX BODY */
+
+.box {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 210px;
+    height: 165px;
+    border-radius: 8px 8px 18px 18px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ff8fba 0%,
+            #ffafd0 42%,
+            #ff91bd 43%,
+            #ff91bd 57%,
+            #ffafd0 58%,
+            #ff8fba 100%
+        );
+
+    box-shadow:
+        0 15px 30px rgba(183, 57, 108, .25),
+        inset 0 5px 8px rgba(255,255,255,.4);
+}
+
+/* BOX LID */
+
+.lid {
+    position: absolute;
+    width: 230px;
+    height: 45px;
+    left: 50%;
+    top: -27px;
+    transform: translateX(-50%);
+    transform-origin: left bottom;
+
+    border-radius: 10px;
+    background:
+        linear-gradient(
+            90deg,
+            #ff81b2 0%,
+            #ffa6ca 42%,
+            #ff82b4 43%,
+            #ff82b4 57%,
+            #ffa6ca 58%,
+            #ff81b2 100%
+        );
+
+    box-shadow: 0 10px 20px rgba(180, 55, 105, .3);
+    z-index: 5;
+}
+
+/* RIBBON */
+
+.ribbon-vertical {
+    position: absolute;
+    width: 35px;
+    height: 165px;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    background: #ff5f9f;
+    box-shadow: inset 0 0 7px rgba(255,255,255,.35);
+}
+
+.ribbon-horizontal {
+    position: absolute;
+    width: 230px;
+    height: 13px;
+    left: 50%;
+    top: -11px;
+    transform: translateX(-50%);
+    background: #ff5f9f;
+    z-index: 6;
+}
+
+/* BOW */
+
+.bow {
+    position: absolute;
+    left: 50%;
+    top: -63px;
+    transform: translateX(-50%);
+    z-index: 8;
+}
+
+.bow-left,
+.bow-right {
+    position: absolute;
+    width: 65px;
+    height: 43px;
+    background: #ff5f9f;
+    border-radius: 70% 20% 70% 20%;
+    box-shadow: inset 0 4px 5px rgba(255,255,255,.3);
+}
+
+.bow-left {
+    right: 7px;
+    transform: rotate(20deg);
+}
+
+.bow-right {
+    left: 7px;
+    transform: scaleX(-1) rotate(20deg);
+}
+
+.bow-center {
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    left: 50%;
+    top: 9px;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    background: #ed3f87;
+}
+
+/* FACE */
+
+.face {
+    position: absolute;
+    left: 50%;
+    top: 72px;
+    transform: translateX(-50%);
+    width: 100px;
+    text-align: center;
+    color: #7f3154;
+    font-size: 30px;
+    letter-spacing: 12px;
+}
+
+/* ---------------- OPEN ANIMATION ---------------- */
+
+.gift.open .lid {
+    animation: lidOpen 1.2s cubic-bezier(.2,.8,.2,1) forwards;
+}
+
+.gift.open .bow {
+    animation: bowOpen 1.2s cubic-bezier(.2,.8,.2,1) forwards;
+}
+
+@keyframes lidOpen {
+    0% {
+        transform: translateX(-50%) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(-50%, -110px) rotate(-13deg);
+    }
+}
+
+@keyframes bowOpen {
+    0% {
+        transform: translateX(-50%);
+    }
+
+    100% {
+        transform: translate(-50%, -110px) rotate(-13deg);
+    }
+}
+
+/* ---------------- PARTICLES ---------------- */
+
+.particle {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    pointer-events: none;
+    z-index: 10;
+    font-size: 25px;
+    animation: flyUp var(--duration) linear forwards;
+}
+
+@keyframes flyUp {
+    0% {
+        transform:
+            translate(-50%, 0)
+            scale(.2)
+            rotate(0deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    100% {
+        transform:
+            translate(
+                calc(-50% + var(--x)),
+                calc(-50vh - var(--y))
+            )
+            scale(var(--scale))
+            rotate(var(--rotation));
+        opacity: 0;
+    }
+}
+
+/* ---------------- FINAL FLOATING EFFECT ---------------- */
+
+.floating {
+    position: fixed;
+    pointer-events: none;
+    z-index: 2;
+    animation: floating 7s linear infinite;
+    opacity: .85;
+}
+
+@keyframes floating {
+    0% {
+        transform: translateY(110vh) rotate(0deg);
+    }
+
+    100% {
+        transform: translateY(-15vh) rotate(360deg);
+    }
+}
+
+/* ---------------- LYRICS ---------------- */
+
+.lyrics-container {
+    position: fixed;
+    left: 50%;
+    bottom: 9%;
+    transform: translateX(-50%);
+    width: 92%;
+    max-width: 850px;
+    min-height: 100px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 30;
+
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1s ease;
+}
+
+.lyrics-container.visible {
+    opacity: 1;
+}
+
+.lyric {
+    padding: 18px 25px;
+
+    font-size: clamp(19px, 5vw, 32px);
+    line-height: 1.4;
+    text-align: center;
+
+    color: white;
+
+    text-shadow:
+        0 2px 5px #9c315e,
+        0 0 12px rgba(255,255,255,.8);
+
+    background: rgba(208, 73, 126, .25);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    border-radius: 25px;
+
+    opacity: 0;
+    transform: translateY(20px) scale(.95);
+
+    transition:
+        opacity .5s ease,
+        transform .5s ease;
+}
+
+.lyric.show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* ---------------- HIDDEN AUDIO ---------------- */
+
+audio {
+    display: none;
+}
+
+/* ---------------- OPEN MESSAGE ---------------- */
+
+.open-message {
+    position: fixed;
+    left: 50%;
+    top: 18%;
+    transform: translateX(-50%);
+    z-index: 40;
+
+    color: #d43e78;
+    font-size: clamp(20px, 5vw, 30px);
+    text-align: center;
+
+    opacity: 0;
+    transition: opacity 1s ease;
+    pointer-events: none;
+}
+
+.open-message.show {
+    opacity: 1;
+}
+
+/* ---------------- HEARTBEAT ---------------- */
+
+.heart-pulse {
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0%,100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.15);
+    }
+}
+
+/* ---------------- DESKTOP ---------------- */
+
+@media (min-width: 700px) {
+
+    .gift-area {
+        top: 55%;
+        transform: translate(-50%, -50%) scale(1.15);
+    }
+
+    .lyrics-container {
+        bottom: 7%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="background-glow"></div>
+
+<!-- INSTRUCTION -->
+
+<div class="instruction" id="instruction">
+    <h1>🎁 A Little Surprise For You 💗</h1>
+
+    <p>Slide up on the gift to open it</p>
+
+    <div class="arrow">⬆️</div>
+</div>
+
+<!-- GIFT -->
+
+<div class="gift-area" id="giftArea">
+
+    <div class="gift" id="gift">
+
+        <div class="bow">
+            <div class="bow-left"></div>
+            <div class="bow-right"></div>
+            <div class="bow-center"></div>
+        </div>
+
+        <div class="lid">
+            <div class="ribbon-horizontal"></div>
+        </div>
+
+        <div class="box">
+            <div class="ribbon-vertical"></div>
+
+            <div class="face">
+                ˶ᵔ ᵕ ᵔ˶
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- MESSAGE -->
+
+<div class="open-message" id="openMessage">
+    ✨ Something special for you... ✨
+</div>
+
+<!-- LYRICS -->
+
+<div class="lyrics-container" id="lyricsContainer">
+    <div class="lyric" id="lyric"></div>
+</div>
+
+<!-- AUDIO -->
+
+<audio id="song" preload="auto">
+    <source
+        src="cswfR85D7jM-2e69122c32fdc08dd1f790ada0781604841.mp3"
+        type="audio/mpeg">
+</audio>
+
+
+<script>
+
+/* =========================================================
+   SETTINGS
+   ========================================================= */
+
+const START_TIME = 47;
+
+/*
+   Your MP3 begins at 47 seconds.
+
+   The lyric times below are RELATIVE to 47 seconds.
+
+   Example:
+
+   time: 0
+   = actual audio position 47 seconds
+
+   time: 5
+   = actual audio position 52 seconds
+
+   time: 10
+   = actual audio position 57 seconds
+*/
+
+
+/* =========================================================
+   LYRICS
+   =========================================================
+
+   Paste the lyrics you supplied into this array.
+
+   IMPORTANT:
+   Do not change the structure.
+
+   Example:
+
+   { time: 0, text: "YOUR LYRIC" },
+
+*/
+
+const lyrics = [
+
+    /*
+       PASTE YOUR FIRST LYRIC LINE HERE
+
+       Example:
+       { time: 0, text: "First line" },
+
+       Then continue:
+
+       { time: 4.5, text: "Second line" },
+       { time: 9.0, text: "Third line" },
+
+       The time is measured from the 47-second
+       starting point of the song.
+    */
+
+];
+
+
+/* =========================================================
+   ELEMENTS
+   ========================================================= */
+
+const gift = document.getElementById("gift");
+const instruction = document.getElementById("instruction");
+const giftArea = document.getElementById("giftArea");
+const song = document.getElementById("song");
+const lyricsContainer = document.getElementById("lyricsContainer");
+const lyricBox = document.getElementById("lyric");
+const openMessage = document.getElementById("openMessage");
+
+
+/* =========================================================
+   SWIPE DETECTION
+   ========================================================= */
+
+let startY = null;
+let currentY = null;
+let opened = false;
+
+
+/* Touch start */
+
+document.addEventListener("touchstart", function(e) {
+
+    if (opened) return;
+
+    startY = e.touches[0].clientY;
+    currentY = startY;
+
+}, { passive: true });
+
+
+/* Touch movement */
+
+document.addEventListener("touchmove", function(e) {
+
+    if (opened || startY === null) return;
+
+    currentY = e.touches[0].clientY;
+
+}, { passive: true });
+
+
+/* Touch end */
+
+document.addEventListener("touchend", function() {
+
+    if (opened || startY === null) return;
+
+    const distance = startY - currentY;
+
+    /*
+       If the finger moved upward at least 60 pixels,
+       open the gift.
+    */
+
+    if (distance > 60) {
+        openGift();
+    }
+
+    startY = null;
+    currentY = null;
+
+});
+
+
+/* =========================================================
+   MOUSE SUPPORT
+   ========================================================= */
+
+let mouseStart = null;
+
+document.addEventListener("mousedown", function(e) {
+
+    if (opened) return;
+
+    mouseStart = e.clientY;
+
+});
+
+document.addEventListener("mouseup", function(e) {
+
+    if (opened || mouseStart === null) return;
+
+    const distance = mouseStart - e.clientY;
+
+    if (distance > 60) {
+        openGift();
+    }
+
+    mouseStart = null;
+
+});
+
+
+/* =========================================================
+   CLICK FALLBACK
+   =========================================================
+
+   On desktop, clicking the gift also works.
+*/
+
+gift.addEventListener("click", function() {
+
+    if (!opened) {
+        openGift();
+    }
+
+});
+
+
+/* =========================================================
+   OPEN GIFT
+   ========================================================= */
+
+async function openGift() {
+
+    if (opened) return;
+
+    opened = true;
+
+    /* Gift animation */
+
+    gift.classList.add("open");
+
+    /* Hide instruction */
+
+    instruction.style.opacity = "0";
+
+    instruction.style.transform =
+        "translateX(-50%) translateY(-30px)";
+
+    /* Show message */
+
+    setTimeout(() => {
+
+        openMessage.classList.add("show");
+
+    }, 700);
+
+
+    /* Create explosion */
+
+    createExplosion();
+
+
+    /* Continue creating floating decorations */
+
+    setTimeout(() => {
+
+        createFloatingDecorations();
+
+    }, 1200);
+
+
+    /* Start music at 47 seconds */
+
+    try {
+
+        song.currentTime = START_TIME;
+
+        await song.play();
+
+    } catch (error) {
+
+        console.log(
+            "Browser blocked automatic audio playback:",
+            error
+        );
+
+    }
+
+
+    /* Show lyrics */
+
+    setTimeout(() => {
+
+        lyricsContainer.classList.add("visible");
+
+    }, 1200);
+
+
+    /* Hide gift after a while */
+
+    setTimeout(() => {
+
+        giftArea.style.transition =
+            "opacity 2s ease, transform 2s ease";
+
+        giftArea.style.opacity = "0";
+
+        giftArea.style.transform =
+            "translate(-50%, -50%) scale(.7)";
+
+    }, 3500);
+
+}
+
+
+/* =========================================================
+   FLOWER / HEART EXPLOSION
+   ========================================================= */
+
+const decorations = [
+    "🌸",
+    "🌺",
+    "🌷",
+    "💐",
+    "🌼",
+    "🌻",
+    "🪷",
+    "💮",
+    "🏵️",
+    "🪻",
+    "💕",
+    "💗",
+    "💖",
+    "💘",
+    "❤️",
+    "💝",
+    "✨",
+    "⭐",
+    "🦋"
+];
+
+
+function createExplosion() {
+
+    /*
+       Create lots of particles in waves.
+    */
+
+    for (let wave = 0; wave < 8; wave++) {
+
+        setTimeout(() => {
+
+            for (let i = 0; i < 18; i++) {
+
+                createParticle();
+
+            }
+
+        }, wave * 220);
+
+    }
+
+}
+
+
+function createParticle() {
+
+    const particle =
+        document.createElement("div");
+
+    particle.className = "particle";
+
+    particle.textContent =
+        decorations[
+            Math.floor(
+                Math.random() * decorations.length
+            )
+        ];
+
+    const x =
+        (Math.random() - .5) * 80 + "vw";
+
+    const y =
+        35 + Math.random() * 65 + "vh";
+
+    const duration =
+        2.5 + Math.random() * 3.5;
+
+    const scale =
+        .7 + Math.random() * 1.5;
+
+    const rotation =
+        (Math.random() * 720 - 360) + "deg";
+
+    particle.style.setProperty(
+        "--x",
+        x
+    );
+
+    particle.style.setProperty(
+        "--y",
+        y
+    );
+
+    particle.style.setProperty(
+        "--duration",
+        duration + "s"
+    );
+
+    particle.style.setProperty(
+        "--scale",
+        scale
+    );
+
+    particle.style.setProperty(
+        "--rotation",
+        rotation
+    );
+
+    /*
+       Start particles around the gift.
+    */
+
+    particle.style.left =
+        (50 + (Math.random() - .5) * 15) + "%";
+
+    particle.style.top =
+        (48 + (Math.random() - .5) * 10) + "%";
+
+    document.body.appendChild(particle);
+
+
+    setTimeout(() => {
+
+        particle.remove();
+
+    }, duration * 1000 + 500);
+
+}
+
+
+/* =========================================================
+   CONTINUOUS FLOATING DECORATIONS
+   ========================================================= */
+
+function createFloatingDecorations() {
+
+    /*
+       Keep generating decorations so that
+       the screen slowly becomes filled.
+    */
+
+    setInterval(() => {
+
+        createFloating();
+
+    }, 350);
+
+}
+
+
+function createFloating() {
+
+    const item =
+        document.createElement("div");
+
+    item.className = "floating";
+
+    item.textContent =
+        decorations[
+            Math.floor(
+                Math.random() * decorations.length
+            )
+        ];
+
+    item.style.left =
+        Math.random() * 100 + "vw";
+
+    item.style.fontSize =
+        (15 + Math.random() * 28) + "px";
+
+    item.style.animationDuration =
+        (5 + Math.random() * 7) + "s";
+
+    item.style.animationDelay =
+        Math.random() * 2 + "s";
+
+    document.body.appendChild(item);
+
+
+    setTimeout(() => {
+
+        item.remove();
+
+    }, 15000);
+
+}
+
+
+/* =========================================================
+   LYRIC SYNCHRONIZATION
+   ========================================================= */
+
+let currentLyric = -1;
+
+
+song.addEventListener("timeupdate", function() {
+
+    /*
+       Convert actual audio time to time
+       relative to the 47-second starting point.
+    */
+
+    const elapsed =
+        song.currentTime - START_TIME;
+
+
+    /*
+       Don't show lyrics before 47 seconds.
+    */
+
+    if (elapsed < 0) return;
+
+
+    let newLyric = -1;
+
+
+    /*
+       Find the most recent lyric.
+    */
+
+    for (let i = 0; i < lyrics.length; i++) {
+
+        if (elapsed >= lyrics[i].time) {
+
+            newLyric = i;
+
+        }
+
+    }
+
+
+    /*
+       Only update when the lyric changes.
+    */
+
+    if (
+        newLyric !== -1 &&
+        newLyric !== currentLyric
+    ) {
+
+        currentLyric = newLyric;
+
+        showLyric(
+            lyrics[newLyric].text
+        );
+
+    }
+
+});
+
+
+/* =========================================================
+   DISPLAY LYRIC
+   ========================================================= */
+
+function showLyric(text) {
+
+    lyricBox.classList.remove("show");
+
+
+    setTimeout(() => {
+
+        lyricBox.textContent = text;
+
+        lyricBox.classList.add("show");
+
+    }, 180);
+
+}
+
+
+/* =========================================================
+   SONG END
+   ========================================================= */
+
+song.addEventListener("ended", function() {
+
+    lyricBox.classList.remove("show");
+
+    setTimeout(() => {
+
+        lyricBox.textContent =
+            "💗 Thank you for opening my little gift 💗";
+
+        lyricBox.classList.add("show");
+
+    }, 500);
+
+});
+
+
+/* =========================================================
+   PREVENT ACCIDENTAL SCROLLING
+   ========================================================= */
+
+document.addEventListener(
+    "touchmove",
+    function(e) {
+
+        if (!opened) {
+
+            e.preventDefault();
+
+        }
+
+    },
+    { passive: false }
+);
+
+</script>
+
+</body>
+</html>
